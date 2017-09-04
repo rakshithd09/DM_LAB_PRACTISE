@@ -1,0 +1,32 @@
+print "hello"
+
+
+## Reading and plotting a csv file
+## import the required libraries
+import pandas as pd
+import matplotlib.pyplot as plt
+%pylab inline
+
+##reading a csv file with headers
+data =pd.read_csv("/home/c1/Desktop/DMALab-master/Lab0/hubble_data.csv")
+#print first five rows
+data.head()
+
+#skip initial 5 lines and display the output
+
+#reading a csv without headers
+headers = ("distance","recession_velocity")
+data_no_headers =pd.read_csv("/home/c1/Desktop/DMALab-master/Lab0/hubble_data_no_headers.csv",names = headers)
+data_no_headers.head()
+
+#reading a single column
+data["distance"].head()
+
+
+#how to replace index number?
+data.set_index("distance", inplace = True)
+data.head()
+
+#plotting: x is distance and y is velocity
+data.plot()
+plt.show()

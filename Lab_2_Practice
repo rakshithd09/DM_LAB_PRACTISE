@@ -1,0 +1,52 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+%pylab inline
+data2 = pd.read_csv("/home/c1/Downloads/DMALab-master/Lab0/wages_hours.csv")
+data2.head()
+
+#how to separate the  second column with \t tabs
+data2 = pd.read_csv("/home/c1/Downloads/DMALab-master/Lab0/wages_hours.csv", sep = "\t")
+data2.head()
+
+data2.plot()
+plt.show()
+
+#how to read a preferred column only from the file
+#Lets consider for discussion age vs rate(salary) fields
+data2 = data2[["AGE","RATE"]]
+data2.head()
+
+
+data2.set_index("AGE", inplace = True)
+data2.head()
+
+
+-----------------------------------------------------------------------------------------------------------------------------
+import pandas as pd
+import matplotlib.pyplot as plt
+%pylab inline
+
+
+
+#Add headers and remove the inital comment line in visitors.csv
+headers = ("date","visitors")
+data = pd.read_csv("/home/c1/Downloads/DMALab-master/Lab0/visitors.csv", skiprows = 4,names = headers)
+data.head()
+
+#Add headers and remove the inital comment line in visitors-new.csv
+headers = ("date","visitors_new")
+data_new = pd.read_csv("/home/c1/Downloads/DMALab-master/Lab0/visitors-new.csv", skiprows = 4,names = headers)
+data_new.head()
+
+
+#Note: both contains a common field date
+#Now merge both dataframes
+data_combined = pd.merge(data,data_new)
+data_combined.head()
+
+
+#sort the data based on date
+data_combined.sort_values(["date"], inplace=True)
+data_combined.set_index("date", inplace=True)
+data_combined.head()
+#merge again if you are getting key error and then run this.
